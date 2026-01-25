@@ -1,0 +1,12 @@
+```java
+	public static RemoteCacheManager getInstance(Properties props){
+		if(cacheManager == null){
+			synchronized (RemoteCacheManagerHolder.class) {
+				if(cacheManager == null){
+					cacheManager = new RemoteCacheManager(props);
+				}
+			}
+		}
+		return cacheManager;
+	}
+```

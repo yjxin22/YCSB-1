@@ -1,0 +1,19 @@
+Context:
+package com.yahoo.ycsb.db;
+import java.util.Properties;
+import org.infinispan.client.hotrod.RemoteCacheManager;
+public class RemoteCacheManagerHolder {
+}
+
+Fix a THREAD_SAFETY_VIOLATION in the following code snippet:
+
+	public static RemoteCacheManager getInstance(Properties props){
+		if(cacheManager == null){
+			synchronized (RemoteCacheManager.class) {
+				<START_BUG> cacheManager = new RemoteCacheManager(props); <END_BUG>
+			}
+		}
+		<START_BUG> return cacheManager; <END_BUG>
+	}
+
+In your response, output code snippet only.

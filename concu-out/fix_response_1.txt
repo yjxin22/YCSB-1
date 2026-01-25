@@ -1,0 +1,14 @@
+STRATEGY for cacheManager: synchronized+RemoteCacheManager.class
+
+```java
+	public static RemoteCacheManager getInstance(Properties props){
+		if(cacheManager == null){
+			synchronized (RemoteCacheManager.class) {
+				if(cacheManager == null){
+					cacheManager = new RemoteCacheManager(props);
+				}
+			}
+		}
+		return cacheManager;
+	}
+```
